@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chickens/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //Ahmed manguod
@@ -11,6 +13,8 @@ class FirebaseAuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
+
+      log( 'FirebaseAuthException in createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}');
       if (e.code == 'weak-password') {
         throw CustomException(message: 'كلمة المرور ضعيفة جداً. الرجاء اختيار كلمة مرور أقوى.');
       } else if (e.code == 'email-already-in-use') {
@@ -19,10 +23,12 @@ class FirebaseAuthService {
         ); 
       } else { 
         throw CustomException(
-          message: 'لقد حدث خطأ. الرجاء المحاولة مرة أخرى لاحقاً.',
+          message: 'تأكد من اتصال الإنترنت وحاول مرة أخرى.',
         );
       }
-    } catch (e) {
+    } catch (e) {    
+        log( 'FirebaseAuthException in createUserWithEmailAndPassword: ${e.toString()}');
+
       throw CustomException(
         message: 'حدث خطأ غير متوقع في التسجيل. الرجاء المحاولة مرة أخرى لاحقاً.',
       );

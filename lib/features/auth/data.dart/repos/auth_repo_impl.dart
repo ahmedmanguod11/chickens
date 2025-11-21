@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chickens/core/errors/exceptions.dart';
 import 'package:chickens/core/errors/failures.dart';
 import 'package:chickens/core/services/firebase_auth_service.dart';
@@ -28,6 +30,8 @@ class AuthRepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return left(ServerFailure(e.message));
     } catch (e) {
+
+      log('Exception in createUserWithEmailAndPassword: ${e.toString()}');
       return left(ServerFailure('حدث خطأ غير متوقع . الرجاء المحاولة مرة أخرى لاحقاً.'));
     }
   }
