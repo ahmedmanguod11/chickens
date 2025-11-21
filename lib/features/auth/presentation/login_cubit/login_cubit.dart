@@ -7,7 +7,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   final AuthRepo authRepo;
 
-  Future<void> signInUser(String email, String password) async {
+  Future<void> LoginUser(String email, String password) async {
     emit(LoginLoading());
 
     var result = await authRepo.signInWithEmailAndPassword(
