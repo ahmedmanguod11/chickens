@@ -1,3 +1,4 @@
+import 'package:chickens/core/helper_fanctions/build_error_bar.dart';
 import 'package:chickens/features/auth/presentation/cubits/signup_cubit.dart';
 import 'package:chickens/features/auth/presentation/cubits/signup_state.dart';
 import 'package:chickens/features/auth/presentation/views/widget/signup_view_body.dart';
@@ -15,14 +16,7 @@ class SignupViewBlocConsumer extends StatelessWidget {
       if (state is SignUpSuccess) {
 
       } else if (state is SignUpFailure) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(state.message),
-            backgroundColor: Colors.red,
-            showCloseIcon: true,
-            
-          ),
-        );
+        buildErrorbar(context, state.message);
       }
    },
     

@@ -6,7 +6,6 @@ import 'package:chickens/core/widgets/custom_button.dart';
 import 'package:chickens/core/widgets/custom_text_form_field.dart';
 import 'package:chickens/core/widgets/or_divider.dart';
 import 'package:chickens/core/widgets/social_login_button.dart';
-import 'package:chickens/features/auth/domain.dart/repos/auth_repo.dart';
 import 'package:chickens/features/auth/presentation/cubits/signup_cubit.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
