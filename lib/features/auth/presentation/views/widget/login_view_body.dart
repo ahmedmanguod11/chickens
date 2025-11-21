@@ -46,7 +46,6 @@ class LoginViewBody extends StatelessWidget {
               ),
               SizedBox(height: 15),
               CustomButton(onPressed: () {
-                Navigator.of(context).pushReplacementNamed('home_view');
               }, text: 'تسجيل دخول'),
               SizedBox(height: 16),
               const DontHaveAnAccount(),

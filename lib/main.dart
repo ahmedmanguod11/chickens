@@ -1,5 +1,6 @@
 
 import 'package:chickens/core/helper_fanctions/on_generate_routs.dart';
+import 'package:chickens/core/services/get_it_service.dart';
 import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/features/splash/presentation/views/splash_view.dart';
@@ -21,6 +22,7 @@ await Firebase.initializeApp(
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  setupGetit();
   runApp(const Chickens());
 }
 
