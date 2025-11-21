@@ -5,6 +5,7 @@ import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/widgets/custom_button.dart';
 import 'package:chickens/core/widgets/custom_text_form_field.dart';
 import 'package:chickens/core/widgets/or_divider.dart';
+import 'package:chickens/core/widgets/password_field.dart';
 import 'package:chickens/core/widgets/social_login_button.dart';
 import 'package:chickens/features/auth/presentation/cubits/signup_cubit.dart';
 import 'package:flutter/gestures.dart';
@@ -56,13 +57,10 @@ late String email, password, username;
               ),
               SizedBox(height: 10),
           
-              CustomTextFormField(
-                  onSaved: (value) {
-                    password = value!;
-                  },
-                hintText: 'كلمة المرور',
-                textInputType: TextInputType.visiblePassword,
-                suffixIcon: Icon(Icons.remove_red_eye, color: Colors.grey[600]),
+              PasswordField(
+                onSaved: (value) {
+                  password = value!;
+                },
               ),
               
               SizedBox(height: 30),
