@@ -34,5 +34,35 @@ class FirebaseAuthService {
       );
     }
   }
+  Future<User> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      log( 'FirebaseAuthException in signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}');
+
+      if (e.code == 'user-not-found') {
+        throw CustomException(
+          message: 'كلمة المرور او البريد الإلكتروني غير صحيحه.',
+        );
+      } else if (e.code == 'wrong-password') {
+        throw CustomException(message: 'كلمة المرور او البريد الإلكتروني غير صحيحه.');
+      } else {
+        throw CustomException(
+          message: 'تأكد من اتصال الإنترنت وحاول مرة أخرى.',
+        );
+      }
+    } catch (e) {
+      log( 'Exception in signInWithEmailAndPassword: ${e.toString()}');
+
+      throw CustomException(
+        message: 'حدث خطأ غير متوقع في تسجيل الدخول. الرجاء المحاولة مرة أخرى لاحقاً.',
+      );
+    }
+  }
 }
 //video 19
