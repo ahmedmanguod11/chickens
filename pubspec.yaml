@@ -1,0 +1,68 @@
+name: chickens
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.20.2
+  flutter_svg: ^2.2.2
+  flutter_localization: ^0.3.3
+  dots_indicator: ^4.0.1
+  # video_player: ^2.10.0
+  shared_preferences: ^2.2.0
+  cupertino_icons: ^1.0.8
+  carousel_slider: ^5.1.1
+  firebase_core: ^4.2.1
+  dartz: ^0.10.1
+  firebase_auth: ^6.1.2
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/manguod_logo.jpg"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/manguod_logo.jpg"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"
+  windows:
+    generate: true
+    image_path: "assets/images/manguod_logo.jpg"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/images/manguod_logo.jpg"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: cairo
+      fonts:
+        - asset: assets/fonts/alfont_com_Cairo-Regular-1.ttf
+          weight: 500
+
+flutter_assets:
+  assets_path: assets/images/
+  output_path: lib/core/utils
+  filename: app_images.dart
+  field_prefix: null
+
+flutter_intl:
+  enabled: true

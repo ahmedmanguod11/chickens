@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "691384732208",
+    "project_id": "manguod",
+    "storage_bucket": "manguod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691384732208:android:1938bb1919fee2c94cfbf5",
+        "android_client_info": {
+          "package_name": "com.example.chickens"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwgEcTGmUcEUbMFNCr4m2NR_RRA38uQTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
