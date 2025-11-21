@@ -1,3 +1,5 @@
+
+
 import 'package:chickens/core/errors/failures.dart';
 import 'package:chickens/features/auth/domain.dart/entites/user_entites.dart';
 import 'package:dartz/dartz.dart';
@@ -7,7 +9,6 @@ abstract class AuthRepo {
     String email,
     String password,
     String name,
-    String address,
   );
 
 }

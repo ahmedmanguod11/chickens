@@ -16,7 +16,7 @@ class AuthRepoImpl extends AuthRepo {
     String email,
     String password,
     String name,
-    String address,
+    
   ) async {  //jhk
     try {
       var user = await firebaseAuthService.createUserWithEmailAndPassword(

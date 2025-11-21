@@ -1,19 +1,26 @@
+import 'package:chickens/core/services/get_it_service.dart';
 import 'package:chickens/core/widgets/custom_app_bar.dart';
+import 'package:chickens/features/auth/domain.dart/repos/auth_repo.dart';
+import 'package:chickens/features/auth/presentation/cubits/signup_cubit.dart';
 import 'package:chickens/features/auth/presentation/views/widget/sign_up_view_bloc_consumer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignupView extends StatelessWidget {
   const SignupView({super.key});
   static const routeName = 'signup';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: buildAppBar(context, title: 'حساب جديد'),
-        body: Builder(
-          builder: (context) {
-            return SignupViewBlocConsumer();
-          }
-        ),
+    return BlocProvider(
+      create: (context) => SignupCubit(authRepo: getIt<AuthRepo>()),
+      child: Scaffold(
+          appBar: buildAppBar(context, title: 'حساب جديد'),
+          body: Builder(
+            builder: (context) {
+              return SignupViewBlocConsumer();
+            }
+          ),
+      ),
     );
       
     
