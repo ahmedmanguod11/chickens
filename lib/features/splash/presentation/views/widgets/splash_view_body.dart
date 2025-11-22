@@ -1,7 +1,7 @@
 import 'package:chickens/constants.dart';
 import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_images.dart';
-import 'package:chickens/features/auth/presentation/views/login_view.dart';
+import 'package:chickens/features/home/presentaion/views/home_view.dart';
 import 'package:chickens/features/on_boarding/presentation/views/on_bording.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,7 +32,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     bool isOnBordingViewSeen = Prefs.getBool(KisOnBordingViewSeen);
 
     if (isOnBordingViewSeen) {
-      Navigator.pushReplacementNamed(context, LoginView.routName);
+      Navigator.pushReplacementNamed(context, HomeView.routName);
     } else {
       Navigator.pushReplacementNamed(context, OnBording.routeName);
     }

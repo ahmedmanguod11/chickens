@@ -1,7 +1,5 @@
 
 import 'package:chickens/core/helper_fanctions/on_generate_routs.dart';
-import 'package:chickens/core/services/cusom_bloc_observer.dart';
-import 'package:chickens/core/services/get_it_service.dart';
 import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/features/splash/presentation/views/splash_view.dart';
@@ -10,12 +8,10 @@ import 'package:chickens/generated/l10n.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async { 
  WidgetsFlutterBinding.ensureInitialized();
- Bloc.observer = CusomBlocObserver();
 await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
@@ -24,8 +20,8 @@ await Firebase.initializeApp(
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  setupGetit();
-  runApp(const Chickens());
+  // setupGetit();
+  runApp(const Chickens()); 
 }
 
 class Chickens extends StatelessWidget {

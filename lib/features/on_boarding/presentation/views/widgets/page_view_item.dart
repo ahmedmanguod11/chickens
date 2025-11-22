@@ -1,6 +1,6 @@
 import 'package:chickens/constants.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
-import 'package:chickens/features/auth/presentation/views/login_view.dart';
+import 'package:chickens/features/home/presentaion/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -53,7 +53,7 @@ class PageViewItem extends StatelessWidget {
                     onTap: () {
                       (KisOnBordingViewSeen, true);
                       Navigator.of(context)
-                          .pushReplacementNamed(LoginView.routName);
+                          .pushReplacementNamed(HomeView.routName);
                     },
                     child: const Text(
                       'تخط',
