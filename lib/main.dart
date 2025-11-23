@@ -10,6 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/// Entry point of the application.
+///
+/// This function initializes the Firebase app with the default options,
+/// initializes the SharedPreferences, sets the preferred orientation to
+/*******  4911d3eb-3622-4782-a045-1c926c53347f  *******/
 void main() async { 
  WidgetsFlutterBinding.ensureInitialized();
 await Firebase.initializeApp(

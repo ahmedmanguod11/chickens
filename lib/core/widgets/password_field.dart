@@ -1,11 +1,12 @@
 
 import 'package:chickens/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-
 class PasswordField extends StatefulWidget {
   const PasswordField({
-    super.key, this.onSaved,
+    super.key,
+    this.onSaved,
   });
+
   final void Function(String?)? onSaved;
 
   @override
@@ -13,23 +14,25 @@ class PasswordField extends StatefulWidget {
 }
 
 class _PasswordFieldState extends State<PasswordField> {
-bool obscureText = true;
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
       obscureText: obscureText,
-        onSaved: (value) {
-        },
+      onSaved: widget.onSaved,
       hintText: 'كلمة المرور',
       textInputType: TextInputType.visiblePassword,
       suffixIcon: GestureDetector(
         onTap: () {
-           obscureText = !obscureText;
-          setState(() {
-          });
+          obscureText = !obscureText;
+          setState(() {});
         },
-        child:obscureText ? Icon(Icons.remove_red_eye, color: Colors.grey[600]):  Icon(Icons.visibility_off, color: Colors.grey[600])),
+        child: Icon(
+          obscureText ? Icons.remove_red_eye : Icons.visibility_off,
+          color: Colors.grey[600],
+        ),
+      ),
     );
   }
 }

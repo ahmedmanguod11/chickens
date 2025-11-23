@@ -1,9 +1,9 @@
 import 'package:chickens/constants.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
-import 'package:chickens/features/home/presentaion/views/home_view.dart';
+import 'package:chickens/features/auth/presentation/views/auth_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:chickens/core/services/shared_preferences_singleton.dart';
 
 class PageViewItem extends StatelessWidget {
   const PageViewItem({
@@ -15,13 +15,10 @@ class PageViewItem extends StatelessWidget {
     required this.isVisibil,
   });
 
-  /// 👈 image هو ويدجت عشان يقبل Image.asset أو SvgPicture.asset
   final Widget image;
-  final String backgroundImage; // الخلفية (SVG)
+  final String backgroundImage;
   final String subtitle;
   final Widget title;
-
-  /// 👈 true = هيظهر زرار "تخطي" ، false = يختفي
   final bool isVisibil;
 
   @override
@@ -33,27 +30,23 @@ class PageViewItem extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.5,
           child: Stack(
             children: [
-              // الخلفية SVG
               Positioned.fill(
                 child: SvgPicture.asset(backgroundImage, fit: BoxFit.fill),
               ),
-              // الصورة (Widget: ممكن تكون SVG أو PNG أو JPG)
               Positioned(
                 bottom: 0,
                 left: 0,
                 right: 0,
                 child: image,
               ),
-              // زر "تخط" 👇
-              if (isVisibil) // 👈 يظهر فقط لو isVisibil == true
+              if (isVisibil)
                 Positioned(
                   top: 16,
                   right: 16,
                   child: GestureDetector(
                     onTap: () {
-                      (KisOnBordingViewSeen, true);
-                      Navigator.of(context)
-                          .pushReplacementNamed(HomeView.routName);
+                      Prefs.setBool(KisOnBordingViewSeen, true);
+                      Navigator.of(context).pushReplacementNamed(AuthView.routName);
                     },
                     child: const Text(
                       'تخط',
