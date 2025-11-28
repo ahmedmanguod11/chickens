@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField();
+  const SearchTextField({super.key});
   final TextInputType textInputType = TextInputType.text;
   @override
   Widget build(BuildContext context) {

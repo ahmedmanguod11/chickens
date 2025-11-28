@@ -24,13 +24,13 @@ final String text;
               Container(
                 width: 30,
                 height: 30,
-                child: Center(child: SvgPicture.asset(image)),
                 decoration: ShapeDecoration(
                   color: const Color(0xFF1B5E37),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
+                child: Center(child: SvgPicture.asset(image)),
       
               ),
               const SizedBox(width: 4,),
