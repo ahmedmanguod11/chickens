@@ -12,7 +12,6 @@ import 'package:chickens/features/home/presentaion/views/home_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class AuthViewBody extends StatefulWidget {
 const AuthViewBody({super.key});
 
@@ -27,7 +26,7 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 late String username, phone, address, password;
 String landline = "none";
 bool hasLandline = false;
-bool isLoading = false; // يتحكم باللودينج
+bool isLoading = false;
 
 void startLoading() {
 setState(() {
@@ -118,9 +117,8 @@ text: 'تسجيل دخول',
 onPressed: () async {
 if (formKey.currentState!.validate()) {
 formKey.currentState!.save();
+startLoading();
 
-
-                      startLoading(); // بداية اللودينج
 
                       try {
                         await FirebaseFirestore.instance
@@ -135,15 +133,17 @@ formKey.currentState!.save();
                           'createdAt': Timestamp.now(),
                         });
 
+                        // حفظ اسم المستخدم بعد التسجيل
+                        await Prefs.setString('username', username);
                         Prefs.setBool('loggedIn', true);
-                        stopLoading(); // إيقاف اللودينج
+                        stopLoading();
 
                         Navigator.pushReplacementNamed(
                           context,
                           HomeView.routName,
                         );
                       } catch (e) {
-                        stopLoading(); // إيقاف اللودينج
+                        stopLoading();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("حدث خطأ أثناء التسجيل")),
                         );
@@ -180,7 +180,7 @@ formKey.currentState!.save();
           ),
         ),
       ),
-      if (isLoading) // يظهر اللودينج فوق كل شيء
+      if (isLoading)
         Container(
           color: Colors.black.withOpacity(0.5),
           alignment: Alignment.center,
