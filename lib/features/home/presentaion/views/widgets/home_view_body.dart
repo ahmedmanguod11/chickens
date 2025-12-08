@@ -28,7 +28,7 @@ class HomeViewBody extends StatelessWidget {
         ),
 
         ),
-                            BestSellerGridView(),
+             BestSellerGridView(),
 
       ],
     );

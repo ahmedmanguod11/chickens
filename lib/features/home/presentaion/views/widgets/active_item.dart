@@ -33,7 +33,7 @@ final String text;
                 child: Center(child: SvgPicture.asset(image)),
       
               ),
-              const SizedBox(width: 4,),
+              const SizedBox(width: 2,),
               Text(text,style: AppTextStyles.bold13.copyWith(color: AppColors.primaryColor),)
             ],
           ),

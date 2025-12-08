@@ -20,7 +20,7 @@ List<BottomNavigationBarEntity>get bottomNavigationBarItems =>[
   BottomNavigationBarEntity(
       activeImage: Assets.cartactive,
       inActiveImage: Assets.cart,
-      name: "سلة التسوق"),
+      name: "سلة تسوق"),
   BottomNavigationBarEntity(
       activeImage: Assets.useractive,
       inActiveImage: Assets.user,
