@@ -1,7 +1,6 @@
 import 'package:chickens/constants.dart';
 import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_colors.dart';
-import 'package:chickens/core/utils/app_images.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/widgets/custom_button.dart';
 import 'package:chickens/core/widgets/custom_text_field.dart';

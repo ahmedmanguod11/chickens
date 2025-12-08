@@ -21,6 +21,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeView());
     case OnBording.routeName:
       return MaterialPageRoute(builder: (context) => const OnBording());
+    // ignore: unreachable_switch_case
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
     default:
