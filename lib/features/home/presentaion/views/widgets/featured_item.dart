@@ -8,7 +8,6 @@ class FeaturedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> images = [
       'assets/images/slider1.jpg',
-      'assets/images/slider2.jpg',
       'assets/images/slider3.jpg',
       'assets/images/slider4.jpg',
       'assets/images/slider5.jpg',

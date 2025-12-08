@@ -25,8 +25,8 @@ return ListTile(
   ),
   leading: Image.asset(Assets.profile),
   title: Text(
-    "صباح الخير",
-    style: AppTextStyles.bold13.copyWith(color: Colors.grey[700]),
+    "صباحُ الخير ...!",
+    style: AppTextStyles.bold19.copyWith(color: Colors.grey[700]),
   ),
   subtitle: Text(
     username,
