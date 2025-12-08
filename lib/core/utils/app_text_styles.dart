@@ -1,118 +1,72 @@
 import 'package:flutter/material.dart';
 
-/// ملف ثابتات النصوص (Typography)
-/// مبني على الخط: Cairo
-
-class AppTextStyles {
-  // ========== Headings ==========
-
-  static const heading1Regular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 48,
-    fontWeight: FontWeight.w400, // Regular
-  );
-
-  static const heading1Bold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 48,
-    fontWeight: FontWeight.w700, // Bold
-  );
-
-  static const heading2Regular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 40,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const heading2Bold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 40,
-    fontWeight: FontWeight.w700,
-  );
-
-  static const heading3Regular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 33,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const heading3Bold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 33,
-    fontWeight: FontWeight.w700,
-  );
-
-  static const heading4Regular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 28,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const heading4Bold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 28,
-    fontWeight: FontWeight.w700,
-  );
-
-  static const heading5Regular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 23,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const heading5Bold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 23,
-    fontWeight: FontWeight.w700,
-  );
-
-  // ========== Body ==========
-
-  static const bodyLargeRegular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 19,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const bodyLargeBold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 19,
-    fontWeight: FontWeight.w700,
-  );
-
-  static const bodyBaseRegular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
-
-  static const bodyBaseBold = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 16,
-    fontWeight: FontWeight.w700,
-  );
-
-  static const bodySmallRegular = TextStyle(
-    fontFamily: 'Cairo',
+abstract class AppTextStyles {
+  static const TextStyle bold13 = TextStyle(
+    fontWeight: FontWeight.bold,
     fontSize: 13,
-    fontWeight: FontWeight.w400,
+  );
+  static const TextStyle bold23 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 23,
   );
 
-  static const bodySmallBold = TextStyle(
-    fontFamily: 'Cairo',
+  static const TextStyle semiBold13 = TextStyle(
+    fontWeight: FontWeight.w600,
     fontSize: 13,
-    fontWeight: FontWeight.w700,
   );
 
-  static const bodyXSmallRegular = TextStyle(
-    fontFamily: 'Cairo',
-    fontSize: 11,
-    fontWeight: FontWeight.w400,
+  static const TextStyle regular13 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
   );
 
-  static const bodyXSmallBold = TextStyle(
-    fontFamily: 'Cairo',
+  static const TextStyle bold16 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+
+  static const TextStyle bold19 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 19,
+  );
+
+  static const TextStyle semiBold16 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+  );
+
+  static const TextStyle bold28 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 28,
+  );
+
+  static const TextStyle regular22 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 22,
+  );
+
+  static const TextStyle semiBold11 = TextStyle(
+    fontWeight: FontWeight.w600,
     fontSize: 11,
-    fontWeight: FontWeight.w700,
+  );
+
+  static const TextStyle medium15 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
+  );
+
+  static const TextStyle regular26 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 26,
+  );
+
+  static const TextStyle regular16 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 16,
+  );
+
+  static const TextStyle regular11 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 11,
   );
 }

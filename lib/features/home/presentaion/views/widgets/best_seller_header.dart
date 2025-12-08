@@ -10,12 +10,12 @@ class BestSellerHeader extends StatelessWidget {
       children: [
         Text(
           'الأكثر مبيعاً',
-          style: AppTextStyles.bodyBaseBold
+          style: AppTextStyles.bold13
         ),
         Spacer(),
         Text(
           'عرض الكل',
-          style: AppTextStyles.bodyXSmallRegular)
+          style: AppTextStyles.bold16)
       ],
     );
   }

@@ -34,7 +34,7 @@ final String text;
       
               ),
               const SizedBox(width: 4,),
-              Text(text,style: AppTextStyles.bodyXSmallBold.copyWith(color: AppColors.primaryColor),)
+              Text(text,style: AppTextStyles.bold13.copyWith(color: AppColors.primaryColor),)
             ],
           ),
       ),

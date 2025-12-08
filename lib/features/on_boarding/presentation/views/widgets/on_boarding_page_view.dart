@@ -38,16 +38,16 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('مرحبًا بك في ', style: AppTextStyles.bodyBaseBold),
+              Text('مرحبًا بك في ', style: AppTextStyles.bold13),
               Text(
                 ' منجود',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.secondaryColor,
                 ),
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -65,16 +65,16 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('تسوق بسهوله مع ', style: AppTextStyles.bodyBaseBold),
+              Text('تسوق بسهوله مع ', style: AppTextStyles.bold13),
               Text(
                 'منجود',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.secondaryColor,
                 ),
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -91,16 +91,16 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('ابدأ رحلتك مع ', style: AppTextStyles.bodyBaseBold),
+              Text('ابدأ رحلتك مع ', style: AppTextStyles.bold13),
               Text(
                 'منجود ',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.secondaryColor,
                 ),
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bodyBaseBold.copyWith(
+                style: AppTextStyles.bold13.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),

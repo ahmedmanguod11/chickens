@@ -26,11 +26,11 @@ return ListTile(
   leading: Image.asset(Assets.profile),
   title: Text(
     "صباح الخير",
-    style: AppTextStyles.bodyBaseRegular.copyWith(color: Colors.grey[700]),
+    style: AppTextStyles.bold13.copyWith(color: Colors.grey[700]),
   ),
   subtitle: Text(
     username,
-    style: AppTextStyles.bodyBaseBold.copyWith(color: Colors.black87),
+    style: AppTextStyles.bold13.copyWith(color: Colors.black87),
   ),
 );
 

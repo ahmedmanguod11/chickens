@@ -26,12 +26,12 @@ class ChickensItem extends StatelessWidget {
                   Image.asset('assets/images/white chicken1.png',height: 140,),
 
                   ListTile(
-                    title: Text('دجاجة بيضاء',style: AppTextStyles.bodyBaseBold),
+                    title: Text('دجاجة بيضاء',style: AppTextStyles.bold13),
                     
                     subtitle: Text.rich(
                        TextSpan(children: [
-                        TextSpan(text: '70 جنية ' , style: AppTextStyles.bodySmallBold.copyWith(color: Colors.orange[600])),
-                        TextSpan(text: '/  الكيلو ', style: AppTextStyles.bodySmallBold.copyWith(color: Colors.orange[300])),
+                        TextSpan(text: '70 جنية ' , style: AppTextStyles.bold13.copyWith(color: Colors.orange[600])),
+                        TextSpan(text: '/  الكيلو ', style: AppTextStyles.bold13.copyWith(color: Colors.orange[300])),
                         
                        ]
                       )

@@ -4,10 +4,8 @@ import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/core/utils/app_images.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/widgets/custom_button.dart';
-import 'package:chickens/core/widgets/custom_text_form_field.dart';
-import 'package:chickens/core/widgets/or_divider.dart';
+import 'package:chickens/core/widgets/custom_text_field.dart';
 import 'package:chickens/core/widgets/password_field.dart';
-import 'package:chickens/core/widgets/social_login_button.dart';
 import 'package:chickens/features/home/presentaion/views/home_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +69,7 @@ textInputType: TextInputType.phone,
 suffixIcon: Icon(Icons.phone, color: Colors.grey[600]),
 ),
 const SizedBox(height: 10),
-Text("هل يوجد رقم أرضي؟", style: AppTextStyles.bodySmallBold),
+Text("هل يوجد رقم أرضي؟", style: AppTextStyles.bold13),
 Row(
 children: [
 Radio(
@@ -156,25 +154,7 @@ startLoading();
                   },
                 ),
                 const SizedBox(height: 16),
-                const OrDivider(),
-                const SizedBox(height: 15),
-                SocialLoginButton(
-                  onPressed: () {},
-                  image: Assets.google,
-                  title: 'تسجيل بواسطة جوجل',
-                ),
-                const SizedBox(height: 15),
-                SocialLoginButton(
-                  onPressed: () {},
-                  image: Assets.facebook,
-                  title: 'تسجيل بواسطة فيسبوك',
-                ),
-                const SizedBox(height: 15),
-                SocialLoginButton(
-                  onPressed: () {},
-                  image: Assets.apple,
-                  title: 'تسجيل بواسطة أبل',
-                ),
+              
               ],
             ),
           ),

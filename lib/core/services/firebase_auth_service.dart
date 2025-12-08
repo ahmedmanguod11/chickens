@@ -1,70 +1,71 @@
 import 'dart:developer';
 
-
 import 'package:chickens/core/errors/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//Ahmed manguod
+
 class FirebaseAuthService {
-  Future<User> createUserWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+  Future deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
+
+  Future<User> createUserWithEmailAndPassword(
+      {required String email, required String password}) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-
-      log( 'FirebaseAuthException in createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}');
+      log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
       if (e.code == 'weak-password') {
-        throw CustomException(message: 'كلمة المرور ضعيفة جداً. الرجاء اختيار كلمة مرور أقوى.');
+        throw CustomException(message: 'الرقم السري ضعيف جداً.');
       } else if (e.code == 'email-already-in-use') {
         throw CustomException(
-          message: 'لقد قمت بالتسجيل مسبقاً بهذا البريد الإلكتروني.',
-        ); 
-      } else { 
+            message: 'لقد قمت بالتسجيل مسبقاً. الرجاء تسجيل الدخول.');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'تاكد من اتصالك بالانترنت.');
+      } else {
         throw CustomException(
-          message: 'تأكد من اتصال الإنترنت وحاول مرة أخرى.',
-        );
+            message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
       }
-    } catch (e) {    
-        log( 'FirebaseAuthException in createUserWithEmailAndPassword: ${e.toString()}');
+    } catch (e) {
+      log("Exception in FirebaseAuthService.createUserWithEmailAndPassword: ${e.toString()}");
 
       throw CustomException(
-        message: 'حدث خطأ غير متوقع في التسجيل. الرجاء المحاولة مرة أخرى لاحقاً.',
-      );
+          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
     }
   }
-  Future<User> signInWithEmailAndPassword({
-    required String email,
-    required String password,
-  }) async {
+
+  Future<User> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-      log( 'FirebaseAuthException in signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}');
-
+      log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()} and code is ${e.code}");
       if (e.code == 'user-not-found') {
         throw CustomException(
-          message: 'كلمة المرور او البريد الإلكتروني غير صحيحه.',
-        );
+            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
       } else if (e.code == 'wrong-password') {
-        throw CustomException(message: 'كلمة المرور او البريد الإلكتروني غير صحيحه.');
+        throw CustomException(
+            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException(
+            message: 'الرقم السري او البريد الالكتروني غير صحيح.');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'تاكد من اتصالك بالانترنت.');
       } else {
         throw CustomException(
-          message: 'تأكد من اتصال الإنترنت وحاول مرة أخرى.',
-        );
+            message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
       }
     } catch (e) {
-      log( 'Exception in signInWithEmailAndPassword: ${e.toString()}');
+      log("Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}");
 
       throw CustomException(
-        message: 'حدث خطأ غير متوقع في تسجيل الدخول. الرجاء المحاولة مرة أخرى لاحقاً.',
-      );
+          message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة اخرى.');
     }
   }
 }
-
-

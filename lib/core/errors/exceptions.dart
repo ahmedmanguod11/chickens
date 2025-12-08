@@ -1,5 +1,6 @@
 class CustomException implements Exception {
   final String message;
+
   CustomException({required this.message});
 
   @override
@@ -7,4 +8,3 @@ class CustomException implements Exception {
     return message;
   }
 }
-//video 19

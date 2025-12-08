@@ -50,7 +50,7 @@ class PageViewItem extends StatelessWidget {
                     },
                     child: const Text(
                       'تخط',
-                      style: AppTextStyles.bodyXSmallBold,
+                      style: AppTextStyles.bold13,
                     ),
                   ),
                 ),
@@ -65,7 +65,7 @@ class PageViewItem extends StatelessWidget {
           child: Text(
             subtitle,
             textAlign: TextAlign.center,
-            style: AppTextStyles.bodySmallRegular.copyWith(
+            style: AppTextStyles.bold13.copyWith(
               color: Colors.grey[900],
             ),
           ),
