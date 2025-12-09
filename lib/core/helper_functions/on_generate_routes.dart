@@ -1,5 +1,6 @@
 
 import 'package:chickens/features/auth/presentation/views/auth_view.dart';
+import 'package:chickens/features/best_selling_chickens/presentation/views/best_selling_view.dart';
 import 'package:chickens/features/home/presentaion/views/home_view.dart';
 import 'package:chickens/features/on_boarding/presentation/views/on_bording.dart';
 import 'package:chickens/features/splash/presentation/views/splash_view.dart';
@@ -24,6 +25,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     // ignore: unreachable_switch_case
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
+
+   case BestSellingView.routeName:
+      return MaterialPageRoute(builder: (context) => const BestSellingView());
+
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
