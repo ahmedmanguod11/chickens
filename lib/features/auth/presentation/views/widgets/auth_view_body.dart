@@ -5,7 +5,7 @@ import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/widgets/custom_button.dart';
 import 'package:chickens/core/widgets/custom_text_field.dart';
 import 'package:chickens/core/widgets/password_field.dart';
-import 'package:chickens/features/home/presentaion/views/home_view.dart';
+import 'package:chickens/features/home/presentaion/views/main_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +17,7 @@ State<AuthViewBody> createState() => _AuthViewBodyState();
 }
 
 class _AuthViewBodyState extends State<AuthViewBody> {
+
 AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -24,6 +25,8 @@ late String username, phone, address, password;
 String landline = "none";
 bool hasLandline = false;
 bool isLoading = false;
+
+
 
 void startLoading() {
 setState(() {
@@ -137,7 +140,7 @@ startLoading();
 
                         Navigator.pushReplacementNamed(
                           context,
-                          HomeView.routName,
+                          MainView.routeName,
                         );
                       } catch (e) {
                         stopLoading();

@@ -1,7 +1,7 @@
 
 import 'package:chickens/features/auth/presentation/views/auth_view.dart';
 import 'package:chickens/features/best_selling_chickens/presentation/views/best_selling_view.dart';
-import 'package:chickens/features/home/presentaion/views/home_view.dart';
+import 'package:chickens/features/home/presentaion/views/main_view.dart';
 import 'package:chickens/features/on_boarding/presentation/views/on_bording.dart';
 import 'package:chickens/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +18,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     //           ));
     case AuthView.routName:
       return MaterialPageRoute(builder: (context) => const AuthView());
-    case HomeView.routName:         
-      return MaterialPageRoute(builder: (context) => const HomeView());
+    case MainView.routeName:         
+      return MaterialPageRoute(builder: (context) => const MainView());
     case OnBording.routeName:
       return MaterialPageRoute(builder: (context) => const OnBording());
     // ignore: unreachable_switch_case

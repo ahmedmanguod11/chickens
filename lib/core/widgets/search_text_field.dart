@@ -42,7 +42,7 @@ class SearchTextField extends StatelessWidget {
           ),
           hintText: 'ابحث عن.......',
           filled: true,
-          fillColor: Colors.white,
+          fillColor: Colors.grey[200],
           border: buildBorder(),
           enabledBorder: buildBorder(),
           focusedBorder: buildBorder(),

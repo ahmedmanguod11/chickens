@@ -12,6 +12,7 @@ AppBar buildAppBar(context,
     actions: [
       Visibility(
         visible: showNotification,
+
         child: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: NotificationWidget(),
@@ -37,3 +38,5 @@ AppBar buildAppBar(context,
     ),
   );
 }
+
+

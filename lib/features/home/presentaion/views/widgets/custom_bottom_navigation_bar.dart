@@ -2,60 +2,61 @@ import 'package:chickens/features/home/domain/entites/bottom_navigation_bar_enti
 import 'package:chickens/features/home/presentaion/views/widgets/navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
 
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
+  final ValueChanged<int> onItemTapped;
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
-int selectedIndex = 0;
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-  width: 375,
-  height: 70,
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: const BorderRadius.only(
-      topLeft: Radius.circular(30),
-      topRight: Radius.circular(30),
-    ),
-    boxShadow: const [
-      BoxShadow(
-        color: Colors.black12,
-        blurRadius: 10,
-        spreadRadius: 2,
-        offset: Offset(0, -3),
-      ),
-    ],
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children:  bottomNavigationBarItems.asMap().entries.map((e) {
-      int index = e.key;
-      BottomNavigationBarEntity item = e.value;
-      return Expanded(
-        flex: index == selectedIndex ? 3 : 2,
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          child: NavigationBarItem(
-            isSelected: selectedIndex == index,
-            bottomNavigationBarEntity: item,
+      width: 375,
+      height: 70,
+      decoration: const ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
         ),
-      );
-    }).toList(),
-  ),
-);
+        shadows: [
+          BoxShadow(
+            color: Color(0x19000000),
+            blurRadius: 25,
+            offset: Offset(0, -2),
+            spreadRadius: 0,
+          )
+        ],
+      ),
+      child: Row(
+        children: bottomNavigationBarItems.asMap().entries.map((e) {
+          var index = e.key;
+          var entity = e.value;
 
+          return Expanded(
+            flex: index == selectedIndex ? 3 : 2,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                  widget.onItemTapped(index);
+                });
+              },
+              child: NavigationBarItem(
+                isSelected: selectedIndex == index,
+                bottomNavigationBarEntity: entity,
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 }
-
-
-//video 18
