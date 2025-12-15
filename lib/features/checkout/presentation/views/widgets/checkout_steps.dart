@@ -1,9 +1,6 @@
 import 'package:chickens/features/checkout/presentation/views/widgets/step_item.dart';
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
-import '../../../domain/entites/order_entity.dart';
 
 class CheckoutSteps extends StatelessWidget {
   const CheckoutSteps(

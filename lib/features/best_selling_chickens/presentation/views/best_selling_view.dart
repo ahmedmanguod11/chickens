@@ -4,12 +4,19 @@ import 'package:flutter/material.dart';
 
 class BestSellingView extends StatelessWidget {
   const BestSellingView({super.key});
+
   static const String routeName = 'best-selling';
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: buildAppBar( context, title: 'الأكثر مبيعاً'),
-      body: BestSellingViewBody(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: 'الأكثر مبيعاً',
+        ),
+        body: BestSellingViewBody(),
+      ),
     );
   }
 }

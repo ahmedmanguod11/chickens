@@ -67,7 +67,7 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '${carItemEntity.calculateTotalWeight()} كم',
+                      '${carItemEntity.calculateTotalPrice()}كيلو',
                       textAlign: TextAlign.right,
                       style: AppTextStyles.regular13.copyWith(
                         color: AppColors.secondaryColor,

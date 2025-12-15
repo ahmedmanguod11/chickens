@@ -1,6 +1,8 @@
 
 import 'package:chickens/features/auth/presentation/views/auth_view.dart';
 import 'package:chickens/features/best_selling_chickens/presentation/views/best_selling_view.dart';
+import 'package:chickens/features/checkout/presentation/views/checkout_view.dart';
+import 'package:chickens/features/home/domain/entites/cart_entity.dart';
 import 'package:chickens/features/home/presentaion/views/main_view.dart';
 import 'package:chickens/features/on_boarding/presentation/views/on_bording.dart';
 import 'package:chickens/features/splash/presentation/views/splash_view.dart';
@@ -28,6 +30,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
    case BestSellingView.routeName:
       return MaterialPageRoute(builder: (context) => const BestSellingView());
+
+      case CheckoutView.routeName:         
+      return MaterialPageRoute(builder: (context) =>  CheckoutView(cartEntity: settings.arguments as CartEntity,));
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

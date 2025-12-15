@@ -13,6 +13,7 @@ dependencies:
   intl: ^0.20.2
   flutter_localization: ^0.3.3
   dots_indicator: ^4.0.1
+  cached_network_image: ^3.4.1
   # video_player: ^2.10.0
   shared_preferences: ^2.2.0
   cupertino_icons: ^1.0.8

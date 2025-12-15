@@ -70,7 +70,8 @@ class Assets {
   static const String home ="assets/images/home.svg";
     static const String homeactive ="assets/images/homeactive.svg";
 
-  static get imagesTrash => null;
+  // static get imagesTrash => null;
 
- 
+   static const String imagesTrash = "assets/images/trash.svg";
+
 }

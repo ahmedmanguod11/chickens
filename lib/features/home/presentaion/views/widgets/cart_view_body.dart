@@ -13,53 +13,85 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: kTopPaddding,
-                  ),
-                  buildAppBar(
-                    
-                    context,
-                    title: 'السلة',
-                    showNotification: false,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const CartHeader(),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                ],
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: kTopPaddding,
+                    ),
+                    buildAppBar(
+                      context,
+                      title: 'السلة',
+                      showNotification: false,
+                      showBackButton: false,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CartHeader(),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
-                  ? const SizedBox()
-                  : const CustomDivider(),
-            ),
-            CarItemsList(
-              carItems: context.watch<CartCubit>().cartEntity.cartItems,
-            ),
-            SliverToBoxAdapter(
-              child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
-                  ? const SizedBox()
-                  : const CustomDivider(),
-            ),
-          ],
+              SliverToBoxAdapter(
+                child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                    ? const SizedBox()
+                    : const CustomDivider(),
+              ),
+              CarItemsList(
+                carItems: context.watch<CartCubit>().cartEntity.cartItems,
+              ),
+              SliverToBoxAdapter(
+                child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                    ? const SizedBox()
+                    : const CustomDivider(),
+              ),
+            ],
+          ),
         ),
-        Positioned(
-          left: 16,
-          right: 16,
-          bottom: MediaQuery.sizeOf(context).height * .07,
-          child: const CustomCartButton(),
-        )
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, ),
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomCartButton(), // زر الدفع العادي
+              ),
+              const SizedBox(width: 10),
+             Expanded(
+  child: ElevatedButton(
+    onPressed: () {
+      // تنفيذ منطق إرسال الفاتورة بدون دفع
+      // context.read<CartCubit>().sendInvoiceOnly();
+      // showBar(context, 'تم إرسال الفاتورة، الدفع عند التسليم');
+    },
+    style: ElevatedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16), // نفس CustomCartButton
+      ),
+      backgroundColor: Colors.orange, // لون مميز للفاتورة
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16), // نفس البادينج
+    ),
+    child: Text(
+      'إرسال الفاتورة',
+      style: const TextStyle(
+        fontSize: 16, // نفس حجم النص في CustomCartButton
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    ),
+  ),
+)
+
+            ],
+          ),
+        ),
       ],
     );
   }

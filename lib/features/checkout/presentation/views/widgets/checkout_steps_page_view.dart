@@ -4,7 +4,6 @@ import 'package:chickens/features/checkout/presentation/views/widgets/shipping_s
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'checkout_steps.dart';
 
 class CheckoutStepsPageView extends StatelessWidget {
   const CheckoutStepsPageView({

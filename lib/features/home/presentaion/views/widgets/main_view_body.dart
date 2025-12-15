@@ -1,4 +1,5 @@
 import 'package:chickens/features/home/presentaion/views/product_view.dart';
+import 'package:chickens/features/home/presentaion/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 import '../cart_view.dart';
@@ -10,7 +11,7 @@ class MainViewBody extends StatelessWidget {
     required this.currentViewIndex,
   });
 
-  final int currentViewIndex;
+  final int currentViewIndex; 
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class MainViewBody extends StatelessWidget {
         HomeView(),
         ProductView(),
         CartView(),
+        ProfileView(),
       ],
     );
   }

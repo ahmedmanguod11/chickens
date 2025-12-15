@@ -29,7 +29,7 @@ class CustomCartButton extends StatelessWidget {
             }
           },
           text:
-              'الدفع  ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',
+              'الدفع  ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()}  جنيه ',
         );
       },
     );
