@@ -65,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: bottomNavigationBarItems.map((e) {
+          // ignore: unused_local_variable
           int index = bottomNavigationBarItems.indexOf(e);
           return BottomNavigationBarItem(
             icon: Image.asset(e.inActiveImage, width: 24, height: 24),
