@@ -10,8 +10,8 @@ const CustomHomeAppBar({super.key});
 @override
 Widget build(BuildContext context) {
 // جلب الاسم مباشرة من SharedPreferences
-String username = Prefs.getString('username');
-if (username.isEmpty) username = 'مستخدم';
+String name = Prefs.getString('username');
+if (name.isEmpty) name = 'مستخدم';
 
 
 return ListTile(
@@ -22,7 +22,7 @@ return ListTile(
     style: AppTextStyles.bold19.copyWith(color: Colors.grey[700]),
   ),
   subtitle: Text(
-    username,
+    name,
     style: AppTextStyles.bold13.copyWith(color: Colors.black87),
   ),
 );
