@@ -1,6 +1,5 @@
 import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {

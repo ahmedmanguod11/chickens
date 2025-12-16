@@ -6,9 +6,9 @@ import 'package:chickens/core/widgets/chickens_item.dart';
 
 class BestSellerGridView extends StatelessWidget {
   const BestSellerGridView({
-    Key? key,
+    super.key,
     required this.products,
-  }) : super(key: key);
+  });
 final List <ProductEntity> products;
   @override
   Widget build(BuildContext context) {
