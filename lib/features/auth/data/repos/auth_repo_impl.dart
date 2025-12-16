@@ -14,7 +14,6 @@ import 'package:chickens/features/auth/domain/repos/auth_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
