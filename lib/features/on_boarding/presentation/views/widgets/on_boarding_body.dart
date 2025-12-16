@@ -2,7 +2,7 @@ import 'package:chickens/constants.dart';
 import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/core/widgets/custom_button.dart';
-import 'package:chickens/features/auth/presentation/views/auth_view.dart';
+import 'package:chickens/features/auth/presentation/views/signin_view.dart';
 import 'package:chickens/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               text: 'ابدأ الآن',
               onPressed: () {
                 Prefs.setBool(KisOnBordingViewSeen, true);
-                Navigator.of(context).pushReplacementNamed(AuthView.routName);
+                Navigator.of(context).pushReplacementNamed(SigninView.routeName);
               },
             ),
           ),

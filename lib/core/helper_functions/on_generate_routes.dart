@@ -1,5 +1,6 @@
 
-import 'package:chickens/features/auth/presentation/views/auth_view.dart';
+import 'package:chickens/features/auth/presentation/views/signin_view.dart';
+import 'package:chickens/features/auth/presentation/views/signup_view.dart';
 import 'package:chickens/features/best_selling_chickens/presentation/views/best_selling_view.dart';
 import 'package:chickens/features/checkout/presentation/views/checkout_view.dart';
 import 'package:chickens/features/home/domain/entites/cart_entity.dart';
@@ -13,13 +14,15 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
-    // case CheckoutView.routeName:
-    //   return MaterialPageRoute(
-    //       builder: (context) => CheckoutView(
-    //             cartEntity: settings.arguments as CartEntity,
-    //           ));
-    case AuthView.routName:
-      return MaterialPageRoute(builder: (context) => const AuthView());
+    case CheckoutView.routeName:
+      return MaterialPageRoute(
+          builder: (context) => CheckoutView(
+                cartEntity: settings.arguments as CartEntity,
+              ));
+    case SigninView.routeName:
+      return MaterialPageRoute(builder: (context) => const SigninView());
+          case SignupView.routeName:
+      return MaterialPageRoute(builder: (context) => const SignupView());
     case MainView.routeName:         
       return MaterialPageRoute(builder: (context) => const MainView());
     case OnBording.routeName:
@@ -31,6 +34,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
    case BestSellingView.routeName:
       return MaterialPageRoute(builder: (context) => const BestSellingView());
 
+      // ignore: unreachable_switch_case
       case CheckoutView.routeName:         
       return MaterialPageRoute(builder: (context) =>  CheckoutView(cartEntity: settings.arguments as CartEntity,));
 
