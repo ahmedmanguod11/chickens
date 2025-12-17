@@ -139,26 +139,34 @@ class _CartItemState extends State<CartItem> {
                     if (carItem.isChicken)
                       Column(
                         children: [
-                          const Text('وزن الفرخة:'),
+                          const Text('وزن الفرخة:',style: AppTextStyles.bold13),
                           const SizedBox(height: 5),
-                          SizedBox(
-                            width: 60,
-                            child: TextFormField(
-                              initialValue: carItem.weightInKg?.toString() ?? '',
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) {
-                                carItem.weightInKg = double.tryParse(value);
-                                context.read<CartItemCubit>().updateCartItem(carItem);
-                              },
-                              decoration: const InputDecoration(
-                                isDense: true,
-                                contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
+                          Row(
+  mainAxisSize: MainAxisSize.min, // مهم عشان ما يوسعش أكتر من اللازم
+  children: [
+    SizedBox(
+      width: 60, // عرض ثابت للصندوق
+      child: TextFormField(
+        initialValue: carItem.weightInKg?.toString() ?? '',
+        keyboardType: TextInputType.number,
+        onChanged: (value) {
+          carItem.weightInKg = double.tryParse(value);
+          context.read<CartItemCubit>().updateCartItem(carItem);
+        },
+        decoration: const InputDecoration(
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
+          border: OutlineInputBorder(),
+        ),
+      ),
+    ),
+    const SizedBox(width: 4), // مسافة صغيرة
+    const Text('كجم',style: AppTextStyles.bold13),
+  ],
+)
+,
                           const SizedBox(height: 5),
-                          Text('عدد الفراخ: ${carItem.quanitty}'),
+                          Text('عدد الفراخ: ${carItem.quanitty}',style: AppTextStyles.bold13,),
                         ],
                       ),
 
@@ -176,13 +184,23 @@ class _CartItemState extends State<CartItem> {
                             color: AppColors.secondaryColor.withOpacity(0.05),
                             borderRadius: BorderRadius.circular(6),
                           ),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                              '${carItem.calculateTotalPrice().toStringAsFixed(2)} جنيه',
-                              style: AppTextStyles.bold16.copyWith(color: AppColors.secondaryColor),
-                            ),
-                          ),
+                          child: Container(
+  width: 120, // حجم أكبر شوية
+  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+  decoration: BoxDecoration(
+    color: AppColors.secondaryColor.withOpacity(0.05),
+    borderRadius: BorderRadius.circular(6),
+  ),
+  child: FittedBox(
+    fit: BoxFit.scaleDown, // النص يصغر لو محتواه أكبر من العرض
+    alignment: Alignment.centerLeft,
+    child: Text(
+      '${carItem.calculateTotalPrice().toStringAsFixed(2)} جنيه',
+      style: AppTextStyles.bold16.copyWith(color: AppColors.secondaryColor),
+    ),
+  ),
+)
+
                         ),
                       ],
                     )

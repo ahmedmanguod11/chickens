@@ -38,6 +38,8 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                   context,
                   title: 'المنتجات',
                   showBackButton: false,
+                  showNotification: false,
+
                 ),
                 const SizedBox(
                   height: 16,

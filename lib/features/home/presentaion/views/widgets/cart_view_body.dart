@@ -1,3 +1,4 @@
+import 'package:chickens/core/widgets/custom_button.dart';
 import 'package:chickens/features/home/presentaion/cubits/cart_cubit/cart_cubit.dart';
 import 'package:chickens/features/home/presentaion/views/widgets/car_items_list.dart';
 import 'package:chickens/features/home/presentaion/views/widgets/cart_header.dart';
@@ -64,30 +65,8 @@ class CartViewBody extends StatelessWidget {
                 child: CustomCartButton(), // زر الدفع العادي
               ),
               const SizedBox(width: 10),
-             Expanded(
-  child: ElevatedButton(
-    onPressed: () {
-      // تنفيذ منطق إرسال الفاتورة بدون دفع
-      // context.read<CartCubit>().sendInvoiceOnly();
-      // showBar(context, 'تم إرسال الفاتورة، الدفع عند التسليم');
-    },
-    style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16), // نفس CustomCartButton
-      ),
-      backgroundColor: Colors.orange, // لون مميز للفاتورة
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16), // نفس البادينج
-    ),
-    child: Text(
-      'إرسال الفاتورة',
-      style: const TextStyle(
-        fontSize: 16, // نفس حجم النص في CustomCartButton
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    ),
-  ),
-)
+             
+Expanded(child: CustomButton(onPressed: (){} , text: 'الدفع عند التسليم'))
 
             ],
           ),
