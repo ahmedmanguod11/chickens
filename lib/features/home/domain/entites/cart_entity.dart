@@ -1,4 +1,3 @@
-
 import 'package:chickens/core/entities/product_entity.dart';
 import 'package:chickens/features/home/domain/entites/car_item_entity.dart';
 
@@ -7,37 +6,63 @@ class CartEntity {
 
   CartEntity(this.cartItems);
 
-  addCartItem(CartItemEntity cartItemEntity) {
-    cartItems.add(cartItemEntity);
+  void addCartItem(CartItemEntity item) {
+    cartItems.add(item);
   }
 
-  removeCarItem(CartItemEntity carItem) {
-    cartItems.remove(carItem);
+  void removeCarItem(CartItemEntity item) {
+    cartItems.remove(item);
   }
 
+  /// إجمالي الكارت كله
   double calculateTotalPrice() {
-    double totalPrice = 0;
-    for (var carItem in cartItems) {
-      totalPrice += carItem.calculateTotalPrice();
+    double total = 0;
+    for (var item in cartItems) {
+      total += item.calculateTotalPrice();
     }
-    return totalPrice;
+    return total;
   }
+
+  /// عناصر الفراخ فقط
+  List<CartItemEntity> get chickenItems =>
+      cartItems.where((e) => e.weightInKg != null).toList();
+
+  /// باقي المنتجات
+  List<CartItemEntity> get nonChickenItems =>
+      cartItems.where((e) => e.weightInKg == null).toList();
+
+  /// عدد الفراخ
+  int get chickensCount =>
+      chickenItems.fold(0, (sum, item) => sum + item.quantity);
+
+  /// الوزن الكلي للفراخ
+  double get chickensWeight =>
+      chickenItems.fold(0, (sum, item) => sum + item.calculateTotalWeight());
+
+  /// سعر الفراخ بدون تنضيف
+  double get chickensBaseTotal =>
+      chickenItems.fold(
+          0,
+          (sum, item) =>
+              sum +
+              (item.productEntity.price *
+                  (item.weightInKg ?? 0) *
+                  item.quantity));
+
+  /// إجمالي التنضيف
+  double get chickensCleaningTotal =>
+      chickenItems.fold(
+          0, (sum, item) => sum + (item.extraPerChicken * item.quantity));
 
   bool isExis(ProductEntity product) {
-    for (var carItem in cartItems) {
-      if (carItem.productEntity == product) {
-        return true;
-      }
-    }
-    return false;
+    return cartItems.any((item) => item.productEntity == product);
   }
 
   CartItemEntity getCarItem(ProductEntity product) {
-    for (var carItem in cartItems) {
-      if (carItem.productEntity == product) {
-        return carItem;
-      }
-    }
-    return CartItemEntity(productEntity: product, quanitty: 1);
+    return cartItems.firstWhere(
+      (item) => item.productEntity == product,
+      orElse: () =>
+          CartItemEntity(productEntity: product, quanitty: 1),
+    );
   }
 }

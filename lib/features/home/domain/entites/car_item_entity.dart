@@ -6,24 +6,55 @@ class CartItemEntity extends Equatable {
   final ProductEntity productEntity;
   int quanitty;
 
-  CartItemEntity({required this.productEntity, this.quanitty = 0});
+  /// خاص بالفراخ
+  String? chickenType;
+  double? weightInKg;
 
-  num calculateTotalPrice() {
-    return productEntity.price * quanitty; 
+  /// سعر التنضيف لكل فرخة (يتم تحميله من Firebase)
+  double extraPerChicken;
+
+  CartItemEntity({
+    required this.productEntity,
+    this.quanitty = 0,
+    this.chickenType,
+    this.weightInKg,
+    this.extraPerChicken = 0.0, // مبدئياً صفر، هيتحدث من Firebase
+  });
+
+  int get quantity => quanitty;
+
+  bool get isChicken => productEntity.name.contains("فراخ");
+
+  double calculateTotalPrice() {
+    if (quanitty == 0) return 0.0;
+
+    if (isChicken && weightInKg != null) {
+      return (productEntity.price.toDouble() * weightInKg! * quanitty.toDouble()) +
+          (extraPerChicken * quanitty.toDouble());
+    }
+
+    return productEntity.price.toDouble() * quanitty.toDouble();
   }
 
-  num calculateTotalWeight() {
-    return productEntity.unitAmount * quanitty;
+  double calculateTotalWeight() {
+    if (!isChicken || weightInKg == null) return 0.0;
+    return weightInKg! * quanitty.toDouble();
   }
 
-  increasQuantity() {
+  void increasQuantity() {
     quanitty++;
   }
 
-  decreasQuantity() {
-    quanitty--;
+  void decreasQuantity() {
+    if (quanitty > 0) quanitty--;
   }
 
   @override
-  List<Object?> get props => [productEntity];
+  List<Object?> get props => [
+        productEntity,
+        quanitty,
+        chickenType,
+        weightInKg,
+        extraPerChicken,
+      ];
 }
