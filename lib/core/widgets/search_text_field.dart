@@ -1,27 +1,28 @@
-import 'package:chickens/core/utils/app_images.dart';
-import 'package:chickens/core/utils/app_text_styles.dart';
+// search_text_field.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:chickens/core/utils/app_text_styles.dart';
+import 'package:chickens/core/utils/app_images.dart';
 
 class SearchTextField extends StatelessWidget {
-  const SearchTextField({super.key});
+  final ValueChanged<String> onSearch;
+
+  const SearchTextField({super.key, required this.onSearch});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
+      decoration: BoxDecoration(
+        boxShadow: const [
           BoxShadow(
             color: Color(0x0A000000),
             blurRadius: 9,
             offset: Offset(0, 2),
-            spreadRadius: 0,
-          )
+          ),
         ],
       ),
       child: TextField(
-        keyboardType: TextInputType.text,
+        onChanged: onSearch,
         decoration: InputDecoration(
           prefixIcon: SizedBox(
             width: 20,
@@ -32,31 +33,26 @@ class SearchTextField extends StatelessWidget {
           suffixIcon: SizedBox(
             width: 20,
             child: Center(
-              child: SvgPicture.asset(
-                Assets.filter,
-              ),
+              child: SvgPicture.asset(Assets.filter),
             ),
           ),
-          hintStyle: AppTextStyles.regular13.copyWith(
-            color: const Color(0xFF949D9E),
-          ),
           hintText: 'ابحث عن.......',
+          hintStyle: AppTextStyles.regular13.copyWith(color: const Color(0xFF949D9E)),
           filled: true,
           fillColor: Colors.grey[200],
-          border: buildBorder(),
-          enabledBorder: buildBorder(),
-          focusedBorder: buildBorder(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
+            borderSide: const BorderSide(color: Colors.white, width: 1),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
+            borderSide: const BorderSide(color: Colors.white, width: 1),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(4),
+            borderSide: const BorderSide(color: Colors.white, width: 1),
+          ),
         ),
-      ),
-    );
-  }
-
-  OutlineInputBorder buildBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(4),
-      borderSide: const BorderSide(
-        width: 1,
-        color: Colors.white,
       ),
     );
   }

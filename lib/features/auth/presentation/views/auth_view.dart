@@ -8,7 +8,10 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'تسجيل دخول'),
+      appBar: buildAppBar(
+        showBackButton: false,
+        showNotification: false,
+        context, title: 'تسجيل دخول'),
       body: AuthViewBody(),
     );
   }

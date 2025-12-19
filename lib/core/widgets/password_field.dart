@@ -29,7 +29,7 @@ class _PasswordFieldState extends State<PasswordField> {
         child: obscureText
             ? const Icon(
                 Icons.remove_red_eye,
-                color: Color(0xffC9CECF),
+                color: Colors.grey,
               )
             : const Icon(
                 Icons.visibility_off,
