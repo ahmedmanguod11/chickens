@@ -10,13 +10,18 @@ class NotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: const ShapeDecoration(
-        color: Color(0xFFEEF8ED),
-        shape: OvalBorder(),
+    return GestureDetector(
+      onTap: () {
+        
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: const ShapeDecoration(
+          color: Color(0xFFEEF8ED),
+          shape: OvalBorder(),
+        ),
+        child: SvgPicture.asset(Assets.notification),
       ),
-      child: SvgPicture.asset(Assets.notification),
     );
   }
 }

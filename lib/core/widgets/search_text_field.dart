@@ -41,16 +41,16 @@ class SearchTextField extends StatelessWidget {
           filled: true,
           fillColor: Colors.grey[200],
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-            borderSide: const BorderSide(color: Colors.white, width: 1),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Colors.white, width: 7),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-            borderSide: const BorderSide(color: Colors.white, width: 1),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Colors.white, width: 7),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
-            borderSide: const BorderSide(color: Colors.white, width: 1),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: Colors.white, width: 3),
           ),
         ),
       ),

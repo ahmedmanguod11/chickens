@@ -47,7 +47,7 @@ class OnBoardingPageView extends StatelessWidget {
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bold13.copyWith(
+                style: AppTextStyles.bold19.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -74,7 +74,7 @@ class OnBoardingPageView extends StatelessWidget {
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bold13.copyWith(
+                style: AppTextStyles.bold19.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
@@ -100,7 +100,7 @@ class OnBoardingPageView extends StatelessWidget {
               ),
               Text(
                 'manguod',
-                style: AppTextStyles.bold13.copyWith(
+                style: AppTextStyles.bold19.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
