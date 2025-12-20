@@ -26,7 +26,7 @@ class ProductsRepoImpl extends ProductsRepo {
           data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } catch (e) {
-      return left(ServerFailure('Failed to get products'));
+      return left(ServerFailure('فشل في جلب البيانات'));
     }
   }
 
@@ -40,7 +40,7 @@ class ProductsRepoImpl extends ProductsRepo {
           data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } catch (e) {
-      return left(ServerFailure('Failed to get products'));
+      return left(ServerFailure('فشل في جلب البيانات'));
     }
   }
 }
