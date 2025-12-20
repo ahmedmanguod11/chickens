@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductView extends StatelessWidget {
   const ProductView({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ProductsCubit(

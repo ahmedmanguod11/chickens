@@ -1,3 +1,6 @@
+
+
+
 // products_view_body.dart
 import 'package:chickens/constants.dart';
 import 'package:chickens/core/cubits/products_cubit/products_cubit.dart';
@@ -16,8 +19,6 @@ class ProductsViewBody extends StatefulWidget {
 }
 
 class _ProductsViewBodyState extends State<ProductsViewBody> {
-  String searchQuery = '';
-
   @override
   void initState() {
     super.initState();
@@ -33,46 +34,31 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                const SizedBox(height: kTopPaddding),
+                const SizedBox(
+                  height: kTopPaddding,
+                ),
                 buildAppBar(
                   context,
                   title: 'المنتجات',
                   showBackButton: false,
-                  showNotification: false,
                 ),
-                const SizedBox(height: 16),
-
-                // مربع البحث
-                SearchTextField(
-                  onSearch: (query) {
-                    setState(() {
-                      searchQuery = query;
-                    });
-                  },
+                const SizedBox(
+                  height: 16,
                 ),
-
-                const SizedBox(height: 12),
-
-                // عرض عدد المنتجات بعد التصفية
-                BlocBuilder<ProductsCubit, ProductsState>(
-                  builder: (context, state) {
-                    int productsLength = 0;
-                    if (state is ProductsSuccess) {
-                      final filtered = state.products
-                          .where((p) => p.name.contains(searchQuery))
-                          .toList();
-                      productsLength = filtered.length;
-                    }
-                    return ProductsViewHeader(productsLength: productsLength);
-                  },
+                const SearchTextField(),
+                const SizedBox(
+                  height: 12,
                 ),
-                const SizedBox(height: 8),
+                ProductsViewHeader(
+                    productsLength:
+                        context.read<ProductsCubit>().productsLength),
+                const SizedBox(
+                  height: 8,
+                ),
               ],
             ),
           ),
-
-          // GridView للمنتجات مع البحث
-          ProductsGridViewBlocBuilder(searchQuery: searchQuery),
+          const ProductsGridViewBlocBuilder()
         ],
       ),
     );

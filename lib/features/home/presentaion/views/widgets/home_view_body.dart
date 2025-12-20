@@ -38,11 +38,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
                 // مربع البحث الديناميكي
                 SearchTextField(
-                  onSearch: (query) {
-                    setState(() {
-                      searchQuery = query;
-                    });
-                  },
+                  // onSearch: (query) {
+                  //   setState(() {
+                  //     searchQuery = query;
+                  //   });
+                  // },
                 ),
 
                 const SizedBox(height: 7),

@@ -5,9 +5,9 @@ import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/utils/app_images.dart';
 
 class SearchTextField extends StatelessWidget {
-  final ValueChanged<String> onSearch;
+  // final ValueChanged<String> onSearch;
 
-  const SearchTextField({super.key, required this.onSearch});
+  const SearchTextField({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SearchTextField extends StatelessWidget {
         ],
       ),
       child: TextField(
-        onChanged: onSearch,
+        // onChanged: onSearch,
         decoration: InputDecoration(
           prefixIcon: SizedBox(
             width: 20,
