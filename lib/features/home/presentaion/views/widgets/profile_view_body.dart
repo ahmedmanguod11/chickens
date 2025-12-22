@@ -3,6 +3,8 @@ import 'package:chickens/core/services/shared_preferences_singleton.dart';
 import 'package:chickens/core/utils/app_colors.dart';
 import 'package:chickens/core/utils/app_text_styles.dart';
 import 'package:chickens/core/widgets/custom_app_bar.dart';
+import 'package:chickens/features/on_boarding/presentation/views/on_bording.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileViewBody extends StatefulWidget {
@@ -73,7 +75,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                               const CircleAvatar(
                                 radius: 35,
                                 backgroundImage: NetworkImage(
-                                  "https://bzqzggsfhmyndxvmbebb.supabase.co/storage/v1/object/public/manguod_images/images/1766185477720_Manguod.jpg",
+                                  "https://images.pexels.com/photos/11554698/pexels-photo-11554698.jpeg",
                                 ),
                               ),
                               CircleAvatar(
@@ -130,9 +132,6 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                             width: double.infinity,
                             height: 50,
                             child: ElevatedButton.icon(
-                              onPressed: () {
-                                // هنا يمكن إضافة دالة تسجيل الخروج
-                              },
                               icon: const Icon(Icons.logout_outlined),
                               label: const Text('تسجيل الخروج'),
                               style: ElevatedButton.styleFrom(
@@ -143,6 +142,55 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                                   fontSize: 16,
                                 ),
                               ),
+                              onPressed: () {
+                                // إظهار رسالة التأكيد
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    title: const Text('تأكيد الخروج'),
+                                    content: const Text(
+                                        'هل أنت متأكد من تسجيل الخروج؟'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(ctx).pop(); // الغاء
+                                        },
+                                        child: const Text('لا'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () async {
+                                          Navigator.of(ctx).pop(); // اغلاق الديالوج
+                                          try {
+                                            // تسجيل الخروج من Firebase
+                                            await FirebaseAuth.instance.signOut();
+
+                                            // مسح بيانات SharedPreferences
+                                            await Prefs.clear();
+
+                                            // العودة لشاشة OnBording
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const OnBording(),
+                                              ),
+                                            );
+                                          } catch (e) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                    'حدث خطأ أثناء تسجيل الخروج: '),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        child: const Text('نعم'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -172,7 +220,10 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   Widget profileItem(IconData icon, String title, {String? subtitle}) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: AppColors.primaryColor2,),
+      leading: Icon(
+        icon,
+        color: AppColors.primaryColor2,
+      ),
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle) : null,
       trailing: const Icon(Icons.arrow_back_ios_new, size: 16),

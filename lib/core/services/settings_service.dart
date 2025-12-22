@@ -5,11 +5,11 @@ class SettingsService {
 
   static Stream<num> extraPerChickenStream() {
     return _firestore
-        .collection('settings')
-        .doc('chicken_settings')
+        .collection('ahmedadd')
+        .doc('ahmedadd')
         .snapshots()
         .map((doc) {
-          return (doc.data()?['extra_per_chicken'] ?? 0) as num;
+          return (doc.data()?['ahmedadd'] ?? 0) as num;
         });
   }
 }
