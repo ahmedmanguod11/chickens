@@ -6,11 +6,11 @@ class CartItemEntity extends Equatable {
   final ProductEntity productEntity;
   int quanitty;
 
-  /// خاص بالفراخ
-  String? chickenType;
+  /// خاص بالمنتجات القابلة للوزن (فراخ، بط، أرنب، ديك رومي، وز هيطون)
+  String? chickenType; // للفراخ فقط
   double? weightInKg;
 
-  /// سعر التنضيف لكل فرخة (يتم تحميله من Firebase)
+  /// سعر التنضيف لكل وحدة
   double extraPerChicken;
 
   CartItemEntity({
@@ -18,26 +18,39 @@ class CartItemEntity extends Equatable {
     this.quanitty = 0,
     this.chickenType,
     this.weightInKg,
-    this.extraPerChicken = 0.0, // مبدئياً صفر، هيتحدث من Firebase
+    this.extraPerChicken = 0.0,
   });
 
   int get quantity => quanitty;
 
-  bool get isChicken => productEntity.name.contains("فراخ");
+  /// هل المنتج من المنتجات القابلة للوزن
+  bool get isWeighableAnimal =>
+      productEntity.name.contains("فراخ") ||
+      productEntity.name.contains("بط") ||
+      productEntity.name.contains("duck_goose") ||
+      productEntity.name.contains("أرنب") ||
+      productEntity.name.contains("rabbit") ||
+      productEntity.name.contains("ديك رومي") ||
+      productEntity.name.contains("turkey") ||
+      productEntity.name.contains("أوز"); // أضفنا "وز هيطون"
 
+  /// حساب السعر النهائي
   double calculateTotalPrice() {
     if (quanitty == 0) return 0.0;
 
-    if (isChicken && weightInKg != null) {
+    if (isWeighableAnimal && weightInKg != null) {
+      // السعر = (السعر × الوزن × العدد) + (سعر التنظيف × العدد)
       return (productEntity.price.toDouble() * weightInKg! * quanitty.toDouble()) +
           (extraPerChicken * quanitty.toDouble());
     }
 
+    // باقي المنتجات بدون وزن
     return productEntity.price.toDouble() * quanitty.toDouble();
   }
 
+  /// الوزن الكلي (للفراخ والحيوانات القابلة للوزن)
   double calculateTotalWeight() {
-    if (!isChicken || weightInKg == null) return 0.0;
+    if (!isWeighableAnimal || weightInKg == null) return 0.0;
     return weightInKg! * quanitty.toDouble();
   }
 

@@ -23,36 +23,32 @@ class CartEntity {
     return total;
   }
 
-  /// عناصر الفراخ فقط
-  List<CartItemEntity> get chickenItems =>
-      cartItems.where((e) => e.weightInKg != null).toList();
+  /// كل المنتجات القابلة للوزن
+  List<CartItemEntity> get weighableItems =>
+      cartItems.where((e) => e.isWeighableAnimal).toList();
 
   /// باقي المنتجات
-  List<CartItemEntity> get nonChickenItems =>
-      cartItems.where((e) => e.weightInKg == null).toList();
+  List<CartItemEntity> get nonWeighableItems =>
+      cartItems.where((e) => !e.isWeighableAnimal).toList();
 
-  /// عدد الفراخ
-  int get chickensCount =>
-      chickenItems.fold(0, (sum, item) => sum + item.quantity);
+  /// عدد المنتجات القابلة للوزن
+  int get weighableItemsCount =>
+      weighableItems.fold(0, (sum, item) => sum + item.quantity);
 
-  /// الوزن الكلي للفراخ
-  double get chickensWeight =>
-      chickenItems.fold(0, (sum, item) => sum + item.calculateTotalWeight());
+  /// الوزن الكلي للمنتجات القابلة للوزن
+  double get weighableItemsWeight =>
+      weighableItems.fold(0, (sum, item) => sum + item.calculateTotalWeight());
 
-  /// سعر الفراخ بدون تنضيف
-  double get chickensBaseTotal =>
-      chickenItems.fold(
+  /// السعر الأساسي بدون التنضيف للمنتجات القابلة للوزن
+  double get weighableBaseTotal =>
+      weighableItems.fold(
           0,
           (sum, item) =>
-              sum +
-              (item.productEntity.price *
-                  (item.weightInKg ?? 0) *
-                  item.quantity));
+              sum + (item.productEntity.price * (item.weightInKg ?? 0) * item.quantity));
 
   /// إجمالي التنضيف
-  double get chickensCleaningTotal =>
-      chickenItems.fold(
-          0, (sum, item) => sum + (item.extraPerChicken * item.quantity));
+  double get weighableCleaningTotal =>
+      weighableItems.fold(0, (sum, item) => sum + (item.extraPerChicken * item.quantity));
 
   bool isExis(ProductEntity product) {
     return cartItems.any((item) => item.productEntity == product);

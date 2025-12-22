@@ -65,9 +65,7 @@ class CartViewBody extends StatelessWidget {
                 child: CustomCartButton(), // زر الدفع العادي
               ),
               const SizedBox(width: 10),
-             
-Expanded(child: CustomButton(onPressed: (){} , text: 'الدفع عند التسليم'))
-
+              
             ],
           ),
         ),

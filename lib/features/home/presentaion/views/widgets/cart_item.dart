@@ -12,13 +12,13 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class CartItem extends StatefulWidget {
-  
   const CartItem({super.key, required this.carItemEntity});
   final CartItemEntity carItemEntity;
 
   @override
   State<CartItem> createState() => _CartItemState();
 }
+
 class _CartItemState extends State<CartItem> {
   @override
   void initState() {
@@ -26,16 +26,30 @@ class _CartItemState extends State<CartItem> {
     _loadCleaningPrice();
   }
 
-  /// جلب سعر التنضيف لكل فرخة من Firebase
+  /// جلب سعر التنضيف من Firebase حسب نوع المنتج
   Future<void> _loadCleaningPrice() async {
     try {
-      final doc = await FirebaseFirestore.instance
+      final snapshot = await FirebaseFirestore.instance
           .collection('ahmedadd')
-          .doc('ahmedadd') // الكولكشن والدكيومنت اللي قولت عليه
+          .doc('ahmedadd')
           .get();
 
-      if (doc.exists) {
-        final price = (doc.data()?['ahmedadd'] ?? 0).toDouble(); // الفيلد نفس الاسم
+      if (snapshot.exists) {
+        double price = 0.0;
+        final productName = widget.carItemEntity.productEntity.name;
+
+        if (productName.contains('فراخ')) {
+          price = (snapshot.data()?['ahmedadd'] ?? 0).toDouble();
+        } else if (productName.contains('duck_goose') || productName.contains('بط')) {
+          price = (snapshot.data()?['duck_goose'] ?? 0).toDouble();
+        } else if (productName.contains('rabbit') || productName.contains('أرنب')) {
+          price = (snapshot.data()?['rabbit'] ?? 0).toDouble();
+        } else if (productName.contains('turkey') || productName.contains('ديك رومي')) {
+          price = (snapshot.data()?['turkey'] ?? 0).toDouble();
+        } else if (productName.contains('duck_goose') || productName.contains('أوز')) {
+          price = (snapshot.data()?['duck_goose'] ?? 0).toDouble();
+        }
+
         setState(() {
           widget.carItemEntity.extraPerChicken = price;
         });
@@ -93,8 +107,8 @@ class _CartItemState extends State<CartItem> {
                     ),
                     const SizedBox(height: 8),
 
-                    // الفراخ فقط
-                    if (carItem.isChicken)
+                    // Dropdown خاص بالفراخ فقط
+                    if (carItem.productEntity.name.contains('فراخ'))
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -115,60 +129,64 @@ class _CartItemState extends State<CartItem> {
                               context.read<CartItemCubit>().updateCartItem(carItem);
                             },
                           ),
-
                           const SizedBox(height: 5),
-
-                          // بوكس سعر التنضيف لكل فرخة (من Firebase)
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: AppColors.secondaryColor.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              '+${carItem.extraPerChicken.toStringAsFixed(0)} جنيه سعر التنضيف لكل فرخة',
-                              style: AppTextStyles.regular13.copyWith(color: AppColors.secondaryColor),
-                            ),
-                          ),
                         ],
                       ),
 
-                    const SizedBox(height: 8),
 
-                    // وزن وعدد الفراخ
-                    if (carItem.isChicken)
+// سعر التنظيف لكل وحدة
+                    if (carItem.isWeighableAnimal && carItem.extraPerChicken > 0)
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: AppColors.secondaryColor.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          '+${carItem.extraPerChicken.toStringAsFixed(0)} جنيه سعر التنضيف لكل وحدة',
+                          style: AppTextStyles.regular13.copyWith(color: AppColors.secondaryColor),
+                        ),
+                      ),
+                    // الوزن للمنتجات القابلة للوزن
+                    if (carItem.isWeighableAnimal)
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('وزن الفرخة:',style: AppTextStyles.bold13),
+                          Text(
+                            'الوزن:',
+                            style: AppTextStyles.bold13,
+                          ),
                           const SizedBox(height: 5),
                           Row(
-  mainAxisSize: MainAxisSize.min, // مهم عشان ما يوسعش أكتر من اللازم
-  children: [
-    SizedBox(
-      width: 60, // عرض ثابت للصندوق
-      child: TextFormField(
-        initialValue: carItem.weightInKg?.toString() ?? '',
-        keyboardType: TextInputType.number,
-        onChanged: (value) {
-          carItem.weightInKg = double.tryParse(value);
-          context.read<CartItemCubit>().updateCartItem(carItem);
-        },
-        decoration: const InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
-          border: OutlineInputBorder(),
-        ),
-      ),
-    ),
-    const SizedBox(width: 4), // مسافة صغيرة
-    const Text('كجم',style: AppTextStyles.bold13),
-  ],
-)
-,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: 60,
+                                child: TextFormField(
+                                  initialValue: carItem.weightInKg?.toString() ?? '',
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    carItem.weightInKg = double.tryParse(value);
+                                    context.read<CartItemCubit>().updateCartItem(carItem);
+                                  },
+                                  decoration: const InputDecoration(
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 5),
+                                    border: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Text('كجم', style: AppTextStyles.bold13),
+                            ],
+                          ),
                           const SizedBox(height: 5),
-                          Text('عدد الفراخ: ${carItem.quanitty}',style: AppTextStyles.bold13,),
+                          Text('العدد: ${carItem.quanitty}', style: AppTextStyles.bold13),
                         ],
                       ),
+
+                    
 
                     const SizedBox(height: 10),
 
@@ -184,26 +202,17 @@ class _CartItemState extends State<CartItem> {
                             color: AppColors.secondaryColor.withOpacity(0.05),
                             borderRadius: BorderRadius.circular(6),
                           ),
-                          child: Container(
-  width: 120, // حجم أكبر شوية
-  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-  decoration: BoxDecoration(
-    color: AppColors.secondaryColor.withOpacity(0.05),
-    borderRadius: BorderRadius.circular(6),
-  ),
-  child: FittedBox(
-    fit: BoxFit.scaleDown, // النص يصغر لو محتواه أكبر من العرض
-    alignment: Alignment.centerLeft,
-    child: Text(
-      '${carItem.calculateTotalPrice().toStringAsFixed(2)} جنيه',
-      style: AppTextStyles.bold16.copyWith(color: AppColors.secondaryColor),
-    ),
-  ),
-)
-
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              '${carItem.calculateTotalPrice().toStringAsFixed(2)} جنيه',
+                              style: AppTextStyles.bold16.copyWith(color: AppColors.secondaryColor),
+                            ),
+                          ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
